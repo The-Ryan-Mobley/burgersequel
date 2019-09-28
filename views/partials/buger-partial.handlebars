@@ -1,0 +1,15 @@
+<ul>
+    {{#each burger}}
+    {{#unless eaten}}
+
+    <li class='slider'>
+        <p>
+
+            {{this.id}}. {{this.burger_name}}
+
+            <button data-id="{{this.id}}" data-state="{{this.eaten}}" class="devour-burger">Devour-it!</button>
+        </p>
+    </li>
+    {{/unless}}
+    {{/each}}
+</ul>
