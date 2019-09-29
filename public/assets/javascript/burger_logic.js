@@ -85,6 +85,12 @@ $(window).on('load', () => {
         $.ajax('/burger',{
             type:'GET'
         }).then((data)=>{
+            if(data){
+                console.table(data);
+            }
+            else{
+                console.log('spi not calling');
+            }
             let counter =0;
             appendTheBurgers(data,counter);
         });

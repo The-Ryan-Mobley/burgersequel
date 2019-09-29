@@ -8,9 +8,3 @@ module.exports = (sequelize,DataTypes)=>{
     });
     return burgers;
 }
-/** 
- * created_at: {
-        type: 'TIMESTAMP',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false
-*/
