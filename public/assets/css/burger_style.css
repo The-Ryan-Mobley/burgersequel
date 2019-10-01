@@ -67,6 +67,7 @@ body{
 }
 #maker{
     color: #000;
+    width: 100%;
 }
 header{
     overflow-x: hidden;

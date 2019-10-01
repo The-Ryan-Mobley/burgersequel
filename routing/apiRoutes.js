@@ -18,7 +18,6 @@ module.exports = (app)=>{
     });
     app.get('/burger',async (request,response)=>{ //possibly need for repeat select queries //READ
         let result = await db.burgers.findAll({});
-        console.table(result);
         return response.json(result);
         
     });
