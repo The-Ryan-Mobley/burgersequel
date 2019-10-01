@@ -6,9 +6,16 @@ $(window).on('load', () => {
         //grabs varibles from elements
         let id = $(event.target).data('id');
         let state = $(event.target).data('state');
+        let updatedState = undefined;
+        if(state === false){
+            updatedState = true;
+        }else{
+            updatedState = false;
+
+        }
         let burgerId = {
             burgId: id,
-            burgState: state
+            burgState: updatedState
         }
         
         //makes a put call
@@ -16,13 +23,13 @@ $(window).on('load', () => {
             type: 'PUT',
             data: burgerId
         }).then(() => {
-            if(state === 0){                
+            if(state === false){                
                 $(`#${id}`).detach().appendTo('#Burger-bin');
-                $(`#button-${id}`).data('state',1);
+                $(`#button-${id}`).data('state',true);
                 $(`#button-${id}`).text('Cook It!');
             }else{ 
                 $(`#${id}`).detach().appendTo('#Burger-menu');
-                $(`#button-${id}`).data('state',0);
+                $(`#button-${id}`).data('state',false);
                 $(`#button-${id}`).text('Devour It!');
             }
         });
@@ -97,7 +104,7 @@ $(window).on('load', () => {
     }
     function appendTheBurgers(data,counter){
         let burger = data[counter];
-        if(burger.eaten === 0){
+        if(burger.eaten === false){
             listString(burger,'#Burger-menu')
         }
         else{
@@ -113,8 +120,9 @@ $(window).on('load', () => {
         },100);
     }
     function listString(burger,location){
+        console.log(burger);
         let buttonText = '';
-        if(burger.eaten === 0){
+        if(burger.eaten === false){
             buttonText = 'Devour It!';
         }else{
             buttonText = 'Cook It!';

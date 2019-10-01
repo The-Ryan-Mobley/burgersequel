@@ -19,11 +19,11 @@ module.exports = (app)=>{
     app.get('/burger',async (request,response)=>{ //possibly need for repeat select queries //READ
         let result = await db.burgers.findAll({});
         console.table(result);
-        response.json(result);
+        return response.json(result);
         
     });
     app.put('/burger',async (req,response)=>{ //updates eaten status then redisplays UPDATE
-        let result = await db.burgers.update({where:{id: req.body.id}});
+        let result = await db.burgers.update({eaten: req.body.burgState},{where:{id: req.body.burgId}});
         response.json(result);
         if (result.changedRows === 0) {
             return response.status(404).end();
