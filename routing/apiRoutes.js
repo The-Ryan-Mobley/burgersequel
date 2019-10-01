@@ -4,10 +4,10 @@ const express = require('express');
 const path = require('path');
 module.exports = (app)=>{
     app.post('/burger',async (request,response) =>{ //adds burger then updates page //CREATE
-        //name author
+        
         let result = await db.burgers.create({
             burger_name: request.body.name,
-            author: request.body.author,
+            author: request.body.author.replace(/\s+/g,"").toLowerCase(),
         });
         if (result.changedRows === 0) {
             return response.status(404).end();

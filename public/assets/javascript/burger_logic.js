@@ -38,7 +38,7 @@ $(window).on('load', () => {
     });
     $('#submit-burger').on('click',(event)=>{
         let newBurg = grabToppings();
-        let burgerObj = {name: newBurg};
+        let burgerObj = {name: newBurg,author: $('#maker').val().toString()};
         $.ajax('/burger',{
             type: 'POST',
             data: burgerObj
@@ -120,7 +120,7 @@ $(window).on('load', () => {
             buttonText = 'Cook It!';
         }
         liString = `<li class ="slider burger-option" id="${burger.id}">`;
-        liString+=` <p style="white-space:normal"> #${burger.id} - ${burger.burger_name}`; //style to avoid eplise text cut off
+        liString+=` <p style="white-space:normal"> #${burger.id} - ${burger.burger_name} <br>created by: ${burger.author}`; //style to avoid eplise text cut off
         liString+=`<button data-id="${burger.id}" id="button-${burger.id}" data-state="${burger.eaten}" class="devour-burger">${buttonText}</button></p></li>`
         $(liString).appendTo(location);
 

@@ -65,7 +65,9 @@ body{
     display: block;
     margin:1%;
 }
-
+#maker{
+    color: #000;
+}
 header{
     overflow-x: hidden;
     text-align: justify;

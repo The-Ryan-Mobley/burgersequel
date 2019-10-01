@@ -1,8 +1,12 @@
 <div class='container'>
     <form>
         <div class="row">
-            
+
             <div class="six columns">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="maker">
+                </div>
                 <label for="pattys">How many patties?</label>
                 <select class="u-full-width the-meats" id="pattys">
                     <option value="Single">Single</option>
@@ -10,7 +14,7 @@
                     <option value="Triple">Triple</option>
                     <option value="Mega">Mega</option>
                     <option value="Double Mega">Double Mega</option>
-                    
+
                 </select>
                 <label for="cheese">What Kind of Cheese?</label>
                 <select class="u-full-width the-meats" id="cheese">
@@ -19,7 +23,7 @@
                     <option value="Extra Cheesey Burger">Extra Cheesey Burger</option>
                 </select>
 
-                
+
             </div>
             <div class='six columns' id='topping-list'>
                 <label for="ingredient">Select Toppings</label>
@@ -34,7 +38,8 @@
                 </select>
             </div>
         </div>
-        <button class="form-reader" id='more-toppings' type="button" value="&#43" data-topCount="0">&#43 Add Topping</button>
+        <button class="form-reader" id='more-toppings' type="button" value="&#43" data-topCount="0">&#43 Add
+            Topping</button>
         <button class="form-reader" id='go-back' type="button" value="Back">Back</button>
         <button class="form-reader" id='submit-burger' type="button" value="Submit">Submit</button>
     </form>
