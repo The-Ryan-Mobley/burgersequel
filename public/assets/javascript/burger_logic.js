@@ -21,8 +21,11 @@ $(window).on('load', () => {
                 burgState: updatedState
             }
             //makes a put call
-            let call = await $.ajax('/burger',{type: 'PUT',data: burgerId});
-            if(call){
+            let call = await $.ajax('/burger', {
+                type: 'PUT',
+                data: burgerId
+            });
+            if (call) {
                 if (state === false) {
                     $(`#${id}`).detach().appendTo('#Burger-bin');
                     $(`#button-${id}`).data('state', true);
@@ -35,21 +38,31 @@ $(window).on('load', () => {
             }
         });
     } else {
-        
+
         $('#more-toppings').on('click', function (event) { //this code is janky but it works
             //es5 function so i can use this because the syntax of calling itself
             let topID = $(this).data('topcount'); //looked wierd. the selects can be read with .map during collection
             makeToppings(topID);
         });
-        $('#submit-burger').on('click', async(event) => {
-            let newBurg = grabToppings();
-            let burgerObj = {
-                name: newBurg,
-                author: $('#maker').val().toString()
-            };
-            let call = $.ajax('/burger', {type: 'POST',data: burgerObj});
-            if(call){
-                window.location.href = '/';
+        $('#submit-burger').on('click', async (event) => {
+            let maker = $('#maker').val().toString();
+            if (maker.length > 0) {
+                let newBurg = grabToppings();
+                let burgerObj = {
+                    name: newBurg,
+                    author: maker
+                };
+                let call = $.ajax('/burger', {
+                    type: 'POST',
+                    data: burgerObj
+                });
+                if (call) {
+                    window.location.href = '/';
+                }
+            }else{
+                let errorText = $('<p class="err">Please Enter a valid name</p>');
+                errorText.appendTo('#topping-list');
+
             }
         });
         $('#go-back').on('click', (event) => {
@@ -59,7 +72,7 @@ $(window).on('load', () => {
     }
 
 
-    
+
 
     function makeToppings(topID) {
         if (topID < 6) { //5 is enough
@@ -95,7 +108,9 @@ $(window).on('load', () => {
     }
 
     async function listTheBurgers() {
-        let data = await $.ajax('/burger',{type:'GET'});
+        let data = await $.ajax('/burger', {
+            type: 'GET'
+        });
         if (data) {
             console.table(data);
         } else {
