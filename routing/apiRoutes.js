@@ -4,7 +4,6 @@ const express = require('express');
 const path = require('path');
 module.exports = (app)=>{
     app.post('/burger',async (request,response) =>{ //adds burger then updates page //CREATE
-        
         let result = await db.burgers.create({
             burger_name: request.body.name,
             author: request.body.author.replace(/\s+/g,"").toLowerCase(),

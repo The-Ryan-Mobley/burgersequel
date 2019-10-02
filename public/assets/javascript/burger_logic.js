@@ -32,22 +32,7 @@ $(window).on('load', () => {
                     $(`#button-${id}`).data('state', false);
                     $(`#button-${id}`).text('Devour It!');
                 }
-
             }
-            // $.ajax('/burger', {
-            //     type: 'PUT',
-            //     data: burgerId
-            // }).then(() => {
-            //     if (state === false) {
-            //         $(`#${id}`).detach().appendTo('#Burger-bin');
-            //         $(`#button-${id}`).data('state', true);
-            //         $(`#button-${id}`).text('Cook It!');
-            //     } else {
-            //         $(`#${id}`).detach().appendTo('#Burger-menu');
-            //         $(`#button-${id}`).data('state', false);
-            //         $(`#button-${id}`).text('Devour It!');
-            //     }
-            // });
         });
     } else {
         
@@ -56,18 +41,16 @@ $(window).on('load', () => {
             let topID = $(this).data('topcount'); //looked wierd. the selects can be read with .map during collection
             makeToppings(topID);
         });
-        $('#submit-burger').on('click', (event) => {
+        $('#submit-burger').on('click', async(event) => {
             let newBurg = grabToppings();
             let burgerObj = {
                 name: newBurg,
                 author: $('#maker').val().toString()
             };
-            $.ajax('/burger', {
-                type: 'POST',
-                data: burgerObj
-            }).then(() => {
+            let call = $.ajax('/burger', {type: 'POST',data: burgerObj});
+            if(call){
                 window.location.href = '/';
-            });
+            }
         });
         $('#go-back').on('click', (event) => {
             window.location.href = '/';
@@ -93,7 +76,7 @@ $(window).on('load', () => {
             $(toppingString).appendTo('#topping-list');
             $(`#more-toppings`).data('topcount', topID);
         } else {
-            let errorText = $('<p class="err">Max topping reached!(5)</p>');
+            let errorText = $('<p class="err">Max topping reached!(7)</p>');
             errorText.appendTo('#topping-list');
         }
     }
@@ -116,7 +99,7 @@ $(window).on('load', () => {
         if (data) {
             console.table(data);
         } else {
-            console.log('spi not calling');
+            console.log('api not calling');
         }
         let counter = 0;
         appendTheBurgers(data, counter);
