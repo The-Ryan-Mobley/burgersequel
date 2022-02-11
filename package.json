@@ -19,7 +19,7 @@
   "homepage": "https://github.com/The-Ryan-Mobley/burgersequel#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^3.1.0",
+    "express-handlebars": "^5.3.1",
     "mysql2": "^1.7.0",
     "path": "^0.12.7",
     "sequelize": "^4.44.3",
